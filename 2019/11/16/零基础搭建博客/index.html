@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="简述对博客的预期  支持markdown 无需自建数据库与后台 轻便，可移植性强，模板丰富，插件丰富 分享技术相关的博客文章 进行个人对奇奇怪怪领域的知识整理收集    本文用到的工具  github hexo Next博客模版">
+<meta name="description" content="简述对博客的预期  支持markdown 无需自建数据库与后台 轻便，可移植性强，模板丰富，插件丰富 分享技术相关的博客文章 对奇奇怪怪领域的知识整理收集    本文用到的工具  github hexo Next博客模版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="零基础搭建博客">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2&#x2F;index.html">
 <meta property="og:site_name" content="Roger&#39;s Notebook">
-<meta property="og:description" content="简述对博客的预期  支持markdown 无需自建数据库与后台 轻便，可移植性强，模板丰富，插件丰富 分享技术相关的博客文章 进行个人对奇奇怪怪领域的知识整理收集    本文用到的工具  github hexo Next博客模版">
+<meta property="og:description" content="简述对博客的预期  支持markdown 无需自建数据库与后台 轻便，可移植性强，模板丰富，插件丰富 分享技术相关的博客文章 对奇奇怪怪领域的知识整理收集    本文用到的工具  github hexo Next博客模版">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;2.png">
@@ -97,7 +97,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;9.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;10.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;11.png">
-<meta property="og:updated_time" content="2019-11-23T14:55:14.877Z">
+<meta property="og:updated_time" content="2019-11-23T16:10:30.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;1.png">
 
@@ -315,7 +315,7 @@
 <li>无需自建数据库与后台</li>
 <li>轻便，可移植性强，模板丰富，插件丰富</li>
 <li>分享技术相关的博客文章</li>
-<li>进行个人对奇奇怪怪领域的知识整理收集</li>
+<li>对奇奇怪怪领域的知识整理收集</li>
 </ul>
 <br>
 
@@ -328,6 +328,10 @@
 <br>
 
 <a id="more"></a>
+
+<p><strong>目前我的操作流程为</strong></p>
+<p>用<code>typora</code>写markdown博客内容 -&gt; 复制到<code>hexo</code>的博客目录下 -&gt; 一键部署到<code>Github Pages</code></p>
+<br>
 
 <h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>首先拥有github账号，创建新的仓库用来存储博客的所有内容。repository name的前缀要与Owner一致。</p>
 <img src="/images/blog/1.png" style="zoom:30%;">
@@ -350,8 +354,8 @@
 
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装git</p>
 <p>安装node.js：<a href="https://nodejs.org/en/#download" target="_blank" rel="noopener">https://nodejs.org/en/#download</a></p>
-<p>安装hexo：<code>$npm install -g hexo-cli</code></p>
-<p>安装hexo-git：<code>$npm install hexo-deployer-git --save</code></p>
+<p>安装hexo：<code>$ npm install -g hexo-cli</code></p>
+<p>安装hexo-git：<code>$ npm install hexo-deployer-git --save</code></p>
 <br>
 
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>在本地建立用来装博客模版的文件夹<code>hexo_dir</code>，进入文件夹后操作如下</p>
@@ -398,7 +402,7 @@
 <p>然后打开<code>_config.yml</code>，将<code>theme</code>更新成<code>next</code></p>
 <img src="/images/blog/8.png" style="zoom:40%;">
 
-<p>编译部署<code>hexo d -g</code>，再进入github page查看</p>
+<p>编译部署<code>$ hexo d -g</code>，再进入github page查看</p>
 <img src="/images/blog/9.png" style="zoom:35%;">
 
 <p>至此，个人博客的基本框架已经完成了，接下来只需要完善细节与内容</p>

@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="简述对博客的预期  支持markdown 无需自建数据库与后台 轻便，可移植性强，模板丰富，插件丰富 分享技术相关的博客文章 对奇奇怪怪领域的知识整理收集    本文用到的工具  github hexo Next博客模版">
+<meta name="description" content="GitHub pages + Hexo + Next搭建个人博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="零基础搭建博客">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2&#x2F;index.html">
 <meta property="og:site_name" content="Roger&#39;s Notebook">
-<meta property="og:description" content="简述对博客的预期  支持markdown 无需自建数据库与后台 轻便，可移植性强，模板丰富，插件丰富 分享技术相关的博客文章 对奇奇怪怪领域的知识整理收集    本文用到的工具  github hexo Next博客模版">
+<meta property="og:description" content="GitHub pages + Hexo + Next搭建个人博客">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;2.png">
@@ -96,8 +96,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;8.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;9.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;10.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;11.png">
-<meta property="og:updated_time" content="2019-11-23T16:10:30.199Z">
+<meta property="og:updated_time" content="2019-11-29T07:28:52.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;1.png">
 
@@ -196,16 +195,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
           </a>
         </li>
       
@@ -309,123 +298,93 @@
       
 
       
-        <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>对博客的预期</strong></p>
-<ul>
+        <p>GitHub pages + Hexo + Next搭建个人博客</p>
+<a id="more"></a>
+<h2 id="1-简述"><a href="#1-简述" class="headerlink" title="1. 简述"></a>1. 简述</h2><h3 id="1-1-对博客的预期"><a href="#1-1-对博客的预期" class="headerlink" title="1.1 对博客的预期"></a>1.1 对博客的预期</h3><ul>
 <li>支持markdown</li>
 <li>无需自建数据库与后台</li>
 <li>轻便，可移植性强，模板丰富，插件丰富</li>
 <li>分享技术相关的博客文章</li>
 <li>对奇奇怪怪领域的知识整理收集</li>
 </ul>
-<br>
-
-<p><strong>本文用到的工具</strong></p>
-<ul>
+<h3 id="1-2-本文用到的工具"><a href="#1-2-本文用到的工具" class="headerlink" title="1.2 本文用到的工具"></a>1.2 本文用到的工具</h3><ul>
 <li>github</li>
 <li>hexo</li>
 <li>Next博客模版</li>
 </ul>
-<br>
-
-<a id="more"></a>
-
-<p><strong>目前我的操作流程为</strong></p>
-<p>用<code>typora</code>写markdown博客内容 -&gt; 复制到<code>hexo</code>的博客目录下 -&gt; 一键部署到<code>Github Pages</code></p>
-<br>
-
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>首先拥有github账号，创建新的仓库用来存储博客的所有内容。repository name的前缀要与Owner一致。</p>
-<img src="/images/blog/1.png" style="zoom:30%;">
-
-
-
+<h3 id="1-3-目前我的操作流程为"><a href="#1-3-目前我的操作流程为" class="headerlink" title="1.3 目前我的操作流程为"></a>1.3 目前我的操作流程为</h3><p>用<code>typora</code>写markdown博客内容 -&gt; 复制到<code>hexo</code>的博客目录下 -&gt; 一键部署到<code>Github Pages</code></p>
+<p><br></p>
+<h2 id="2-Github"><a href="#2-Github" class="headerlink" title="2. Github"></a>2. Github</h2><p>首先拥有github账号，创建新的仓库用来存储博客的所有内容。repository name的前缀要与Owner一致。</p>
+<p><img src="/images/blog/1.png" style="zoom:30%;"></p>
 <p>创建完仓库，在<code>setting</code>界面的<code>Github Pages</code>就可以查看到博客的地址了，此时博客已经建立完成。</p>
-<img src="/images/blog/2.png" style="zoom:25%;">
-
-<img src="/images/blog/3.png" style="zoom:35%;">
-
+<p><img src="/images/blog/2.png" style="zoom:25%;"></p>
+<p><img src="/images/blog/3.png" style="zoom:35%;"></p>
 <p>其中<code>Custom domain</code>是用来链接自己的域名的，可以通过阿里云购买域名进行绑定。</p>
 <p>此时输入网址，就已经可以看到博客了。</p>
-<img src="/images/blog/4.png" style="zoom:40%;">
-
-<br>
-
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>hexo是一款轻量级的博客模版部署工具，通过hexo对博客进行直接管理，最后将所有内容部署在github上，外部用户再通过博客地址进行访问。</p>
-<br>
-
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装git</p>
+<p><img src="/images/blog/4.png" style="zoom:40%;"></p>
+<p><br></p>
+<h2 id="3-Hexo"><a href="#3-Hexo" class="headerlink" title="3. Hexo"></a>3. Hexo</h2><p>hexo是一款轻量级的博客模版部署工具，通过hexo对博客进行直接管理，最后将所有内容部署在github上，外部用户再通过博客地址进行访问。</p>
+<h3 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1 安装"></a>3.1 安装</h3><p>安装git</p>
 <p>安装node.js：<a href="https://nodejs.org/en/#download" target="_blank" rel="noopener">https://nodejs.org/en/#download</a></p>
 <p>安装hexo：<code>$ npm install -g hexo-cli</code></p>
 <p>安装hexo-git：<code>$ npm install hexo-deployer-git --save</code></p>
-<br>
-
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>在本地建立用来装博客模版的文件夹<code>hexo_dir</code>，进入文件夹后操作如下</p>
-<p><code>$ hexo init</code></p>
-<p><code>$ npm install​</code></p>
-<p><code>$ hexo g</code> 或 <code>$ hexo generate</code></p>
-<p><code>$ hexo s</code> 或 <code>$ hexo server</code></p>
+<h3 id="3-2-使用"><a href="#3-2-使用" class="headerlink" title="3.2 使用"></a>3.2 使用</h3><p>在本地建立用来装博客模版的文件夹<code>hexo_dir</code>，进入文件夹后操作如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir hexo_dir &amp;&amp; <span class="built_in">cd</span> hexo_dir</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo init				<span class="comment"># 在该文件夹初始化博客</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install			<span class="comment"># 安装必备组建</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo generate		<span class="comment"># 编译当前环境与内容</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server			<span class="comment"># 本地网页展示</span></span></span><br></pre></td></tr></table></figure>
 <p>本地浏览器输入：<code>localhost:4000</code></p>
-<img src="/images/blog/5.png" style="zoom:40%;">
-
+<p><img src="/images/blog/5.png" style="zoom:40%;"></p>
 <p>此时本地博客已经搭建完成，在本地就可以进行访问。</p>
-<br>
-
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>接下来需要将本地博客部署到github上，更改文件夹下的<code>_config.yml</code>文件</p>
-<img src="/images/blog/6.png" style="zoom:40%;">
-
+<h3 id="3-3-部署"><a href="#3-3-部署" class="headerlink" title="3.3 部署"></a>3.3 部署</h3><p>接下来需要将本地博客部署到github上，更改文件夹下的<code>_config.yml</code>文件</p>
+<p><img src="/images/blog/6.png" style="zoom:40%;"></p>
 <p>将repository这一栏改成自己的github仓库地址，此时即完成hexo到github的链接</p>
-<br>
-
-<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p>清除本地缓存</p>
-<p><code>$ hexo clean</code></p>
+<h3 id="3-4-指令"><a href="#3-4-指令" class="headerlink" title="3.4 指令"></a>3.4 指令</h3><p>清除本地缓存</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean</span></span><br></pre></td></tr></table></figure>
 <p>生成静态文件，即编译博客</p>
-<p><code>$ hexo generate</code> 或 <code>$ hexo g</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo generate <span class="comment"># hexo g</span></span></span><br></pre></td></tr></table></figure>
 <p>本地server展示</p>
-<p><code>$ hexo server</code> 或 <code>$ hexo s</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo server <span class="comment"># hexo s</span></span></span><br></pre></td></tr></table></figure>
 <p>部署到github</p>
-<p><code>$ hexo deploy</code> 或 <code>$ hexo d</code></p>
-<br>
-
-<h3 id="添加文章"><a href="#添加文章" class="headerlink" title="添加文章"></a>添加文章</h3><p>生成新的markdown博文</p>
-<p><code>$ hexo new post &quot;YOUR ARTICLE TITLE&quot;</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo deploy <span class="comment"># hexo d</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="3-5-添加文章"><a href="#3-5-添加文章" class="headerlink" title="3.5 添加文章"></a>3.5 添加文章</h3><p>生成新的markdown博文</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new post <span class="string">"YOUR ARTICLE TITLE"</span></span></span><br></pre></td></tr></table></figure>
 <p>会产生<code>source/_posts/YOUR-ARTICLE-TITLE.md</code>文件；或者可以讲已经写好的markdown直接复制到<code>source/_posts/</code>下，下次编译的时候会直接load</p>
-<p><code>$ hexo s -g</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo s -g</span></span><br></pre></td></tr></table></figure>
 <p>在本地查看无误后，进行部署</p>
-<p><code>$ hexo d</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo d</span></span><br></pre></td></tr></table></figure>
 <p>部署之后，通过访问你的github主页进行查看，如<code>https://realcx.github.io/</code></p>
-<img src="/images/blog/7.png" style="zoom:40%;">
-
-<br>
-
-<h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><p>本文中用的是<code>Next</code>主题，首先进入你建立的hexo文件夹</p>
-<p><code>$ cd YOUR-HEXO-DIR</code></p>
-<p><code>$ git clone https://github.com/iissnan/hexo-theme-next themes/next</code></p>
+<p><img src="/images/blog/7.png" style="zoom:40%;"></p>
+<h3 id="3-6-更改主题"><a href="#3-6-更改主题" class="headerlink" title="3.6 更改主题"></a>3.6 更改主题</h3><p>本文中用的是<code>Next</code>主题，首先进入你建立的hexo文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> YOUR-HEXO-DIR</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
 <p>然后打开<code>_config.yml</code>，将<code>theme</code>更新成<code>next</code></p>
-<img src="/images/blog/8.png" style="zoom:40%;">
-
+<p><img src="/images/blog/8.png" style="zoom:40%;"></p>
 <p>编译部署<code>$ hexo d -g</code>，再进入github page查看</p>
-<img src="/images/blog/9.png" style="zoom:35%;">
-
+<p><img src="/images/blog/9.png" style="zoom:35%;"></p>
 <p>至此，个人博客的基本框架已经完成了，接下来只需要完善细节与内容</p>
-<br>
-
-<h2 id="文章内容"><a href="#文章内容" class="headerlink" title="文章内容"></a>文章内容</h2><h3 id="markdown中插入图片"><a href="#markdown中插入图片" class="headerlink" title="markdown中插入图片"></a>markdown中插入图片</h3><p>更改主页配置文件<code>_config.yml</code> </p>
+<p><br></p>
+<h2 id="4-文章内容"><a href="#4-文章内容" class="headerlink" title="4. 文章内容"></a>4. 文章内容</h2><h3 id="4-1-markdown中插入图片"><a href="#4-1-markdown中插入图片" class="headerlink" title="4.1 markdown中插入图片"></a>4.1 markdown中插入图片</h3><p>更改主页配置文件<code>_config.yml</code> </p>
 <p><code>post_asset_folder:</code>这个选项设置为<code>true</code></p>
 <p>再下载安装一个可以上传本地图片的插件，在hexo目录下执行</p>
-<p><code>npm install hexo-asset-image --save</code>，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-asset-image --save</span></span><br></pre></td></tr></table></figure>
 <p>在<code>source/</code>下建立文件夹<code>images</code>，将图片存入，博客内可以使用绝对路径表示文件地址<code>![](/images/IMAGE.png)</code></p>
-<br>
-
-<h3 id="在首页省略一部分文章内容"><a href="#在首页省略一部分文章内容" class="headerlink" title="在首页省略一部分文章内容"></a>在首页省略一部分文章内容</h3><p>通过<code>&lt;!--more--&gt;</code>来对内容进行分割，如</p>
-<img src="/images/blog/10.png" style="zoom:32%;">
-
+<h3 id="4-2-在首页省略一部分文章内容"><a href="#4-2-在首页省略一部分文章内容" class="headerlink" title="4.2 在首页省略一部分文章内容"></a>4.2 在首页省略一部分文章内容</h3><p>通过<code>&lt;!--more--&gt;</code>来对内容进行分割，如</p>
+<p><img src="/images/blog/10.png" style="zoom:32%;"></p>
 <p>上方文章内容会显示在主页，下方内容会进行省略</p>
-<br>
+<h3 id="4-3-显示latex数学公式"><a href="#4-3-显示latex数学公式" class="headerlink" title="4.3 显示latex数学公式"></a>4.3 显示latex数学公式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm uninstall hexo-renderer-marked --save		<span class="comment"># 卸载原有的渲染引擎</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-renderer-kramed --save			<span class="comment"># 安装新的渲染器引擎</span></span></span><br></pre></td></tr></table></figure>
+<p>接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code></p>
+<p>把第<code>escape</code>变量的值做相应的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: /^\\([`*\[\]()#$+\-.!_&gt;])/</span><br></pre></td></tr></table></figure>
+<p>把第<code>em</code>变量的值做相应的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span><br></pre></td></tr></table></figure>
+<p>接下来修改在主题内的<code>themes/next/_config.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: false</span><br><span class="line">  engine: mathjax</span><br><span class="line">  cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+<p>最后在文章的开头进行设置<code>mathjax: true</code></p>
+<p><br></p>
+<h2 id="5-踩过的坑"><a href="#5-踩过的坑" class="headerlink" title="5. 踩过的坑"></a>5. 踩过的坑</h2><h3 id="5-1-YAMLException"><a href="#5-1-YAMLException" class="headerlink" title="5.1 YAMLException"></a>5.1 YAMLException</h3><p>除了文章开头，若存在<code>-</code>，则会出现报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ YAMLException ***</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-latex的编译失败"><a href="#5-2-latex的编译失败" class="headerlink" title="5.2 latex的编译失败"></a>5.2 latex的编译失败</h3><p>latex数学模式中如果出现大括号叠加，会编译报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\frac&#123;1&#125;&#123;&#123;2\pi&#125;&#125;$</span><br></pre></td></tr></table></figure>
+<p>需要在大括号间添加空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\frac&#123;1&#125;&#123; &#123;2\pi&#125; &#125;$</span><br></pre></td></tr></table></figure>
 
-<h2 id="最后的效果"><a href="#最后的效果" class="headerlink" title="最后的效果"></a>最后的效果</h2><img src="/images/blog/11.png" style="zoom:50%;">
-
-<br>
-
-<h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2><br>
       
     </div>
     
@@ -532,9 +491,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -571,7 +530,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github"><span class="nav-number">2.</span> <span class="nav-text">Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo"><span class="nav-number">3.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">3.3.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令"><span class="nav-number">3.4.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加文章"><span class="nav-number">3.5.</span> <span class="nav-text">添加文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改主题"><span class="nav-number">3.6.</span> <span class="nav-text">更改主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章内容"><span class="nav-number">4.</span> <span class="nav-text">文章内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown中插入图片"><span class="nav-number">4.1.</span> <span class="nav-text">markdown中插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在首页省略一部分文章内容"><span class="nav-number">4.2.</span> <span class="nav-text">在首页省略一部分文章内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的效果"><span class="nav-number">5.</span> <span class="nav-text">最后的效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续…"><span class="nav-number">6.</span> <span class="nav-text">未完待续…</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简述"><span class="nav-text">1. 简述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-对博客的预期"><span class="nav-text">1.1 对博客的预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-本文用到的工具"><span class="nav-text">1.2 本文用到的工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-目前我的操作流程为"><span class="nav-text">1.3 目前我的操作流程为</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Github"><span class="nav-text">2. Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hexo"><span class="nav-text">3. Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-安装"><span class="nav-text">3.1 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-使用"><span class="nav-text">3.2 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-部署"><span class="nav-text">3.3 部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-指令"><span class="nav-text">3.4 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-添加文章"><span class="nav-text">3.5 添加文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-更改主题"><span class="nav-text">3.6 更改主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-文章内容"><span class="nav-text">4. 文章内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-markdown中插入图片"><span class="nav-text">4.1 markdown中插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-在首页省略一部分文章内容"><span class="nav-text">4.2 在首页省略一部分文章内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-显示latex数学公式"><span class="nav-text">4.3 显示latex数学公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-踩过的坑"><span class="nav-text">5. 踩过的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-YAMLException"><span class="nav-text">5.1 YAMLException</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-latex的编译失败"><span class="nav-text">5.2 latex的编译失败</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -771,6 +730,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

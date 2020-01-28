@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="摘要：宽度优先搜索BFS（Breadth First Search）的原理与算法实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宽度优先搜索BFS">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;28&#x2F;%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BSF&#x2F;index.html">
+<meta property="og:site_name" content="Roger&#39;s Notebook">
+<meta property="og:description" content="摘要：宽度优先搜索BFS（Breadth First Search）的原理与算法实现">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;bsf&#x2F;bsf_start.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;bsf&#x2F;bsf_1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;bsf&#x2F;bsf_2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;bsf&#x2F;bsf_end.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;bsf&#x2F;bsf.gif">
+<meta property="og:updated_time" content="2020-01-28T06:59:47.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;bsf&#x2F;bsf_start.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/28/宽度优先搜索BSF/"/>
+
+
+
+
+
+  <title>宽度优先搜索BFS | Roger's Notebook</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Roger's Notebook</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BSF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Roger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Roger's Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">宽度优先搜索BFS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-28T00:00:00+08:00">
+                2020-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>摘要：宽度优先搜索BFS（Breadth First Search）的原理与算法实现</p>
+<a id="more"></a>
+<h2 id="1-算法简介"><a href="#1-算法简介" class="headerlink" title="1. 算法简介"></a>1. 算法简介</h2><h3 id="1-1-算法定义"><a href="#1-1-算法定义" class="headerlink" title="1.1 算法定义"></a>1.1 算法定义</h3><p><strong>宽度优先搜索BFS（Breadth First Search）</strong>，也称为<strong>广度优先搜索</strong>：”简单的说，BFS是从根节点开始，沿着树的宽度遍历树的节点。如果所有节点均被访问，则算法中止” — from wiki</p>
+<p><strong>人话版本</strong>：就是从起点一层层地向远处扩散，一直到探索到终点为止。</p>
+<h3 id="1-2-要解决什么问题"><a href="#1-2-要解决什么问题" class="headerlink" title="1.2 要解决什么问题"></a>1.2 要解决什么问题</h3><ul>
+<li><p>找到从起点A到达终点B的最短路径；</p>
+</li>
+<li><p>在AB两点之间可能会有障碍物阻碍，不可穿越；</p>
+</li>
+</ul>
+<h3 id="1-3-大致解决思路"><a href="#1-3-大致解决思路" class="headerlink" title="1.3 大致解决思路"></a>1.3 大致解决思路</h3><p>从起点A开始出发，遍历周围的节点，再像洪水一样逐层地向外扩散，直到找到终点。</p>
+<p><br></p>
+<h2 id="2-典型例子"><a href="#2-典型例子" class="headerlink" title="2. 典型例子"></a>2. 典型例子</h2><p>基于图搜的路径规划问题</p>
+<p><img src="/images/bsf/bsf_start.png" alt></p>
+<h3 id="2-1-在地图中的元素与规则"><a href="#2-1-在地图中的元素与规则" class="headerlink" title="2.1 在地图中的元素与规则"></a>2.1 在地图中的元素与规则</h3><ul>
+<li>起点A（蓝色）</li>
+<li>终点B（红色）</li>
+<li>不可穿越的障碍物（灰色）</li>
+<li>节点之间只能上下左右移动</li>
+</ul>
+<h3 id="2-2-定义两个队列"><a href="#2-2-定义两个队列" class="headerlink" title="2.2 定义两个队列"></a>2.2 定义两个队列</h3><ul>
+<li>open_set：表示要去探索的点（有顺序要求），图中用绿色表示</li>
+<li>close_set：表示已经探索过的点（无顺序要求），图中用黄色表示</li>
+</ul>
+<h3 id="2-3-算法过程"><a href="#2-3-算法过程" class="headerlink" title="2.3 算法过程"></a>2.3 算法过程</h3><p>示例中新节点压入open_set的优先顺序为：上-右-下-左</p>
+<p>则地图中探索的优先顺序为：上-右-下-左（因为每次都取队首的节点作为新节点）</p>
+<ul>
+<li>从起点A开始，将起点A放入close_set</li>
+<li>在起点A周围，找到临近的3个节点，按顺序放到open_set的队尾</li>
+</ul>
+<p><img src="/images/bsf/bsf_1.png" alt></p>
+<ul>
+<li>将在open_set中的第一个节点P作为新的探索起点，进行下一次的探索</li>
+<li>节点P移除open_set，放入close_set，P周围的节点再放入open_set的队尾</li>
+</ul>
+<p><img src="/images/bsf/bsf_2.png" alt></p>
+<ul>
+<li>不断重复以上过程，直到探索到终点B，即找到从A到B的最优路径</li>
+</ul>
+<p><img src="/images/bsf/bsf_end.png" alt></p>
+<h3 id="2-4-tips"><a href="#2-4-tips" class="headerlink" title="2.4 tips"></a>2.4 tips</h3><ul>
+<li>遇到无效节点（出地图/进入障碍物/已经在close_set中），则舍弃不要</li>
+<li>停止探索的条件有：探索到了终点；open_set为空；到达了循环最大次数</li>
+</ul>
+<h3 id="2-5-探索的整个过程如下"><a href="#2-5-探索的整个过程如下" class="headerlink" title="2.5 探索的整个过程如下"></a>2.5 探索的整个过程如下</h3><p><img src="/images/bsf/bsf.gif" alt></p>
+<p><br></p>
+<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. 代码实现</h2><h3 id="3-1-伪代码流程图"><a href="#3-1-伪代码流程图" class="headerlink" title="3.1 伪代码流程图"></a>3.1 伪代码流程图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化open_set与close_set</span></span><br><span class="line"><span class="comment"># 将起点A放入open_set，作为最先开始探索的点</span></span><br><span class="line"><span class="comment"># 如果open_set不为空，循环下操作：</span></span><br><span class="line">    <span class="comment"># 拿出open_set的第一个点P</span></span><br><span class="line">    <span class="comment"># 将点P放入close_set</span></span><br><span class="line">    <span class="comment"># 开始按照一定顺序探索点P周围的临近点M：</span></span><br><span class="line">        <span class="comment"># 如果该点无效，直接跳过</span></span><br><span class="line">        <span class="comment"># 记录点M的父节点，即上一个点（用于做最后的路径回溯）</span></span><br><span class="line">        <span class="comment"># 如果点M是终点，则路径搜索完毕，算法结束</span></span><br><span class="line">        <span class="comment"># 更新open_set，即点M放入open_set的队尾</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-2-python代码实现"><a href="#3-2-python代码实现" class="headerlink" title="3.2 python代码实现"></a>3.2 python代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BSF</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, rand_map)</span>:</span></span><br><span class="line">        self.map = rand_map</span><br><span class="line">        self.close_set = set()</span><br><span class="line">        self.open_set = OrderedSet([self.map.start_point])</span><br><span class="line">        self.order_list = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">-1</span>), (<span class="number">-1</span>, <span class="number">0</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> len(self.open_set) &gt; <span class="number">0</span>:</span><br><span class="line">            point = self.open_set[<span class="number">0</span>]</span><br><span class="line">            self.open_set.remove(point)</span><br><span class="line">            self.close_set.add(point)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> order <span class="keyword">in</span> self.order_list:</span><br><span class="line">                (x, y) = (point.x() + order[<span class="number">0</span>], point.y() + order[<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">if</span> self.is_invalid_point(Point2d(x, y)):</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                new_point = self.map.map[(x, y)]</span><br><span class="line">                new_point.set_parent(point)</span><br><span class="line">                <span class="keyword">if</span> new_point == self.map.end_point:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                self.open_set.add(new_point)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_invalid_point</span><span class="params">(self, point)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> (self.map.is_out_of_map(point)) <span class="keyword">or</span> \</span><br><span class="line">                (point <span class="keyword">in</span> self.map.obstacle_set) <span class="keyword">or</span> \</span><br><span class="line">                (point <span class="keyword">in</span> self.close_set):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<p>上面代码做了较多的简化，对Point2d，RandMap的定义，最终路径的连接，图像的绘制，可以参考我的github代码库</p>
+<p>Roger-s-notebook: <a href="https://github.com/realcx/Roger-s-notebook" target="_blank" rel="noopener">https://github.com/realcx/Roger-s-notebook</a></p>
+<p><br></p>
+<h2 id="4-关于算法"><a href="#4-关于算法" class="headerlink" title="4. 关于算法"></a>4. 关于算法</h2><ul>
+<li>搜索算法的核心其实在于如何定义open_set内元素的<strong>优先级</strong>。BSF的思想是：一个节点周围的一层全部搜索完，再去搜索下一层，也就意味着最先进入open_set的元素，也会被最先探索，这是BSF选择的优先级顺序。</li>
+<li>算法思想比较朴素，每一层的元素都要遍历完全后，再往下一层找，直到找到终点。如果图比较大，起点终点距离很远，搜索的速度就比较堪忧了。</li>
+<li>总体来说，可以用来搜索一些简单的小图。该算法也是A*等算法的基础版本。</li>
+</ul>
+<p><br></p>
+<h2 id="5-一些思考"><a href="#5-一些思考" class="headerlink" title="5. 一些思考"></a>5. 一些思考</h2><ul>
+<li>open_set内元素的优先级还可以怎么定义？</li>
+<li>找到终点后，如何用路径把起点和终点连接上？</li>
+</ul>
+<p><br></p>
+<h2 id="6-内容参考"><a href="#6-内容参考" class="headerlink" title="6. 内容参考"></a>6. 内容参考</h2><ul>
+<li>paulquei在云栖社区的博客<br><a href="https://yq.aliyun.com/articles/685477?utm_content=g_1000036267" target="_blank" rel="noopener">https://yq.aliyun.com/articles/685477?utm_content=g_1000036267</a></li>
+</ul>
+<p><br></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2020/01/28/%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BSF/">宽度优先搜索BFS</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Roger 的个人博客">Roger</a></p>
+  <p><span>发布时间:</span>2020年01月28日 - 00:01</p>
+  <p><span>最后更新:</span>2020年01月28日 - 14:01</p>
+  <p><span>原始链接:</span><a href="/2020/01/28/%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BSF/" title="宽度优先搜索BFS">http://yoursite.com/2020/01/28/%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BSF/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/01/28/%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BSF/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/pay/wechatpay.jpeg" alt="Roger 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/pay/alipay.jpeg" alt="Roger 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/28/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2DSF/" rel="next" title="深度优先搜索DFS">
+                <i class="fa fa-chevron-left"></i> 深度优先搜索DFS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/28/Guassion%20Distribution/" rel="prev" title="Gaussian Distribution">
+                Gaussian Distribution <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Roger</p>
+              <p class="site-description motion-element" itemprop="description">关于自动驾驶中的控制与规划算法，基本数学，以及个人感兴趣的领域</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/realcx" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:real.cx@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-算法简介"><span class="nav-text">1. 算法简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-算法定义"><span class="nav-text">1.1 算法定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-要解决什么问题"><span class="nav-text">1.2 要解决什么问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-大致解决思路"><span class="nav-text">1.3 大致解决思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-典型例子"><span class="nav-text">2. 典型例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-在地图中的元素与规则"><span class="nav-text">2.1 在地图中的元素与规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-定义两个队列"><span class="nav-text">2.2 定义两个队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-算法过程"><span class="nav-text">2.3 算法过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-tips"><span class="nav-text">2.4 tips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-探索的整个过程如下"><span class="nav-text">2.5 探索的整个过程如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-代码实现"><span class="nav-text">3. 代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-伪代码流程图"><span class="nav-text">3.1 伪代码流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-python代码实现"><span class="nav-text">3.2 python代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-关于算法"><span class="nav-text">4. 关于算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-一些思考"><span class="nav-text">5. 一些思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-内容参考"><span class="nav-text">6. 内容参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019.11 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roger</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
